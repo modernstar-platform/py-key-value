@@ -1,0 +1,18 @@
+# Ownership for the py-key-value FORK: the platform-owners team
+# (mattohalloran + lelliott-modern-star).
+#
+# WHY THIS REPO IS OWNED AT ALL. It is not a mirror. Modern Star's MCP servers install from it
+# directly — py-key-value-aio[azure-tables] @ git+https://github.com/modernstar-platform/py-key-value.git@<sha>
+# — cloned at image build time into production containers (19 references org-wide). A commit here
+# reaches those images on the next pin bump, so code-owner review is the control on that path.
+#
+# THIS REPO DOES NOT RUN THE CENTRAL GATE, and cannot. It is PUBLIC; engineering-standards, which
+# holds the reusable workflow, is PRIVATE. GitHub does not allow a public repository to call a
+# reusable workflow stored in a private one — the run fails at startup before any job is created,
+# regardless of the Actions access level. Recorded as a dated entry in that repo's
+# exceptions/register.yml. Do not re-add a gate.yml here expecting it to work.
+#
+# The team must have write access or GitHub silently ignores this file. Verify with:
+#   gh api orgs/modernstar-platform/teams/platform-owners/repos --jq '.[].name'
+
+* @modernstar-platform/platform-owners
