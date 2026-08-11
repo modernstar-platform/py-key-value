@@ -1,0 +1,11 @@
+# Ownership for the py-key-value FORK. The platform-owners team (mattohalloran +
+# lelliott-modern-star), matching every other governed repo.
+#
+# This matters more here than elsewhere: Modern Star's MCP servers pip-install from this fork over
+# git at image build time, so a commit to this repo reaches production containers on the next pin
+# bump. Code-owner review is the control on that path.
+#
+# THE TEAM MUST HAVE WRITE ACCESS OR GITHUB SILENTLY IGNORES THIS FILE. Verify with:
+#   gh api orgs/modernstar-platform/teams/platform-owners/repos --jq '.[].name'
+
+* @modernstar-platform/platform-owners
