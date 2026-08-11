@@ -1,0 +1,27 @@
+name: gate
+# Calls the central reusable gate (engineering-standards); surfaces the required check
+# `gate / enforce`. See GOVERNED-REPO.md in that repo.
+#
+# WHY A FORK OF A THIRD-PARTY LIBRARY IS GOVERNED AT ALL: this is not a vanity fork. Modern Star's
+# MCP servers install from it directly —
+#   py-key-value-aio[azure-tables] @ git+https://github.com/modernstar-platform/py-key-value.git@<sha>
+# — cloned at image build time into production containers (19 references org-wide). A commit pushed
+# here reaches those images the next time a pin is bumped, so this repo is a supply-chain control
+# point, not a mirror. It had no branch protection and no ruleset before this.
+#
+# The fork/pin pattern itself is deliberate: pinning a SHA in our own fork makes builds reproducible
+# and immune to upstream force-push, deletion or compromise.
+#
+# sbom: false — a Python library; this repo builds no container image of its own.
+#
+# KEEP THE DIVERGENCE SMALL. This fork is `ahead_by 0` of strawgate/py-key-value apart from
+# governance files. Do not add anything here that is not required to govern it, or syncing upstream
+# gets harder for no benefit.
+on: [pull_request, merge_group]
+permissions:
+  contents: read
+jobs:
+  gate:
+    uses: modernstar-platform/engineering-standards/.github/workflows/reusable-gate.yml@0d1f391bef1285c5a2d4e9ca6fd3536095fe56c1 # v0.3.0; Renovate-managed
+    with:
+      sbom: false
